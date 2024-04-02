@@ -1,0 +1,3 @@
+- [Cron Module](:Zolinga Cron) - Overview of the Cron module
+- [Cron Event](:ref:event:Zolinga Cron) - The event that triggers the cron job execution.
+- [Cron Service](:ref:class:Zolinga:Zolinga Cron:Zolinga CronService) - The `$api->cron` service description.

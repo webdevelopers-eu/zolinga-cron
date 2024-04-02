@@ -1,0 +1,44 @@
+{
+    "name": "Zolinga Cron",
+    "version": "1.0",
+    "description": "A simple cron job manager",
+    "authors": [
+        "Danny Sevcik <danny@zolinga.net>"
+    ],
+    "attributes": {},
+    "listen": [
+        {
+            "description": "Runs all the cron jobs that are due",
+            "event": "cron",
+            "class": "Zolinga\\Cron\\CronRunner",
+            "method": "run",
+            "origin": [
+                "cli",
+                "internal"
+            ]
+        },
+        {
+            "description": "The $api->cron service for managing cron jobs",
+            "service": "cron",
+            "class": "Zolinga\\Cron\\CronService",
+            "origin": [
+                "internal"
+            ]
+        }
+    ],
+    "autoload": {
+        "Zolinga\\Cron\\Tests": "tests/",
+        "Zolinga\\Cron\\": "src/"
+    },
+    "config": {
+        "cron": {
+            "# maxConcurrentJobs": "The maximum number of Runners that can be running at once. E.g. how many siumltaneous cron jobs can be running at once.",
+            "maxConcurrentJobs": 3,
+            "# maxErrors": "The maximum number of errors that can occur before a cron job is disabled and never run again.",
+            "maxErrors": 3,
+            "# maxRuntime": "The maximum number of seconds a Runner is supposed to run. When this time is exceeded, the Runner won't run any more cron jobs and will exit. Next runner will continue with the next cron jobs.",
+            "maxRuntime": 60
+        }
+    }
+    
+}
