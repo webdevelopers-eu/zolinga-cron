@@ -39,6 +39,8 @@
             "# maxRuntime": "The maximum number of seconds a Runner is supposed to run. When this time is exceeded, the Runner won't run any more cron jobs and will exit. Next runner will continue with the next cron jobs.",
             "maxRuntime": 60
         }
-    }
-    
+    },
+    "dependencies": [
+        "zolinga-db"
+    ]
 }
