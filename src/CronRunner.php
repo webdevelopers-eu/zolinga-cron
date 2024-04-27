@@ -171,7 +171,7 @@ class CronRunner implements ListenerInterface
         $event->dispatch();
         // Idiotic intelephense does not support $api->log() using __invoke() and stubbornly insists on not supporting suppressing of errors either.
         $api->log->log(
-            $event->status->isOK() ? $api->log::SEVERITY_INFO : $api->log::SEVERITY_ERROR,
+            $event->status->isOk() ? $api->log::SEVERITY_INFO : $api->log::SEVERITY_ERROR,
             "cron",
             "Cron event {$event} triggered by {$job} finished and is not OK: {$event->status->value} {$event->message}"
         );
@@ -179,7 +179,7 @@ class CronRunner implements ListenerInterface
         $job->status = $event->status;
         $job->message = $event->message;
         $job->totalRuns++;
-        $job->errors = $event->status->isOK() ? 0 : $job->errors + 1;
+        $job->errors = $event->status->isOk() ? 0 : $job->errors + 1;
 
         $this->rescheduleOrRemove($job);
     }
@@ -188,7 +188,7 @@ class CronRunner implements ListenerInterface
     {
         global $api;
 
-        if ($job->status->isOK() && $job->status !== $job::STATUS_CONTINUE && ($job->recurring === null || $job->end <= time())) {
+        if ($job->status->isOk() && $job->status !== $job::STATUS_CONTINUE && ($job->recurring === null || $job->end <= time())) {
             // Done and is not recurring - remove
             $api->log->info("cron", "{$job} finished. Removing from queue.");
             $job->remove();
