@@ -187,7 +187,7 @@ class CronJob implements Stringable, JsonSerializable
         if ($this->id) {
             throw new Exception('The job already exists.');
         }
-        $id = $api->db->expandQuery('INSERT INTO cronJobs (`??`) VALUES ("??")', array_keys($this->data), $this->data);
+        $id = $api->db->queryExpand('INSERT INTO cronJobs (`??`) VALUES ("??")', array_keys($this->data), $this->data);
         if (!$id) {
             throw new Exception('Failed to create the job.');
         }
@@ -247,7 +247,7 @@ class CronJob implements Stringable, JsonSerializable
         if (!$this->id) {
                 throw new Exception('The job does not exist yet. Did you forget to call create() first?');
         }
-        $api->db->expandQuery('UPDATE cronJobs SET ?? WHERE id = ?', $this->data, $this->id);
+        $api->db->queryExpand('UPDATE cronJobs SET ?? WHERE id = ?', $this->data, $this->id);
     }
 
 
