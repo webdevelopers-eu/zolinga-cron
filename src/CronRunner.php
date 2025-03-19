@@ -23,7 +23,11 @@ class CronRunner implements ListenerInterface
         global $api;
 
         $jobIds = $api->db->query("SELECT id FROM cronJobs ORDER BY start asc")->fetchFirstColumnAll();
-        $event->response['jobs'] = array_map(fn ($id) => new CronJob($id), $jobIds);
+        $event->response['jobs'] = array_map(function ($id) {
+            $job = new CronJob();
+            $job->load($id);
+            return $job;
+        }, $jobIds);
         $event->setStatus($event::STATUS_OK, "Found " . count($event->response['jobs']) . " cron jobs.");
     }
 
