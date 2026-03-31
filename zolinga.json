@@ -42,5 +42,13 @@
     },
     "dependencies": [
         "zolinga-db"
+    ],
+    "emit": [
+        {
+            "event": "*",
+            "description": "CronRunner dynamically dispatches scheduled cron job events. The event name, origin, and request payload are defined per cron job entry in the database.",
+            "class": "\\Zolinga\\System\\Events\\RequestEvent",
+            "origin": ["internal"]
+        }
     ]
 }
