@@ -1,4 +1,4 @@
-CREATE TABLE `cronJobs` (
+CREATE TABLE IF NOT EXISTS `cronJobs` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `uuid` varchar(128) NOT NULL,
   `status` int(11) NOT NULL,
